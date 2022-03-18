@@ -1,10 +1,6 @@
 // Import stylesheets
 import './style.css';
 
-// Write Javascript code!
-const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h1>JS Starter</h1>`;
-
 // ARRAY METHODS
 
 //1. ADD/REMOVE items
@@ -88,14 +84,14 @@ console.log(missing); //["one", "two", "three", "four", "five", "six"]
 // -1 one step from the end
 const negativeRemove = missing.splice(-2, 2); //remove 2 elements from last
 console.log(negativeRemove); // ["five", "six"]
-console.log(missing);   //["one", "two", "three", "four"]
+console.log(missing); //["one", "two", "three", "four"]
 
 // Remove rest of the elements starting index 1;
 const negativeDelete = missing.splice(1);
-console.log(negativeDelete);  //["two", "three", "four"]
+console.log(negativeDelete); //["two", "three", "four"]
 console.log(missing); //["one"]
 
-// ARRAU.SLICE() METHOD
+// ARRAY.SLICE() METHOD
 // ******************************************
 
 // Syntax: arr.slice([start], [end])
@@ -104,25 +100,25 @@ console.log(missing); //["one"]
 // It’s similar to a string method str.slice, but instead of substrings it makes subarrays.
 //We can also call it without arguments: arr.slice() creates a copy of arr. That’s often used to obtain a copy for further transformations that should not affect the original array.
 
-const vowels = ["a", "e", "i", "o", "u"];
+const vowels = ['a', 'e', 'i', 'o', 'u'];
 
 const simpleSlice = vowels.slice(1, 3);
 console.log(simpleSlice); // ["e", "i"] --> start at index 1 upto index 3(exclusive).
-console.log(vowels);  // ["a", "e", "i", "o", "u"] -->original one is not mutated
+console.log(vowels); // ["a", "e", "i", "o", "u"] -->original one is not mutated
 
-const negativeSlice = vowels.slice(-2);   
+const negativeSlice = vowels.slice(-2);
 console.log(negativeSlice); //["o", "u"] -->last two elements
 
 const extraSlice = vowels.slice(-3, -1);
-console.log(extraSlice);  //["i", "o"]; -->last index not included
+console.log(extraSlice); //["i", "o"]; -->last index not included
 
-console.log(vowels.slice()) //["a", "e", "i", "o", "u"] -->not sliced;
+console.log(vowels.slice()); //["a", "e", "i", "o", "u"] -->not sliced;
 
 console.log(vowels.slice(2)); //["i", "o", "u"] -->all the rest starting at index 2;
 
-console.log(vowels.slice(0,2)); //["a", "e"]
+console.log(vowels.slice(0, 2)); //["a", "e"]
 
-console.log(vowels.slice(0,0)); //[]
+console.log(vowels.slice(0, 0)); //[]
 
 // ARRAY.CONCAT() METHODS
 // **********************************
@@ -135,19 +131,38 @@ console.log(vowels.slice(0,0)); //[]
 const array1 = [1, 2];
 const array2 = [3, 4];
 const concatOf12 = array1.concat(array2);
-console.log(concatOf12);  //[1, 2, 3, 4]
+console.log(concatOf12); //[1, 2, 3, 4]
 
-console.log(array1.concat("one", "two")); // [1, 2, "one", "two"]
+console.log(array1.concat('one', 'two')); // [1, 2, "one", "two"]
 
-console.log(array2.concat([5, 6]));  // [3, 4, 5, 6]
+console.log(array2.concat([5, 6])); // [3, 4, 5, 6]
 
 console.log(array2.concat([11, 12], [33, 44])); // [3, 4, 11, 12, 33, 44]
 
 // Dealing with objects even arraylike objects.
 const arrayLike = {
-  0:"zero"
-}
+  0: 'zero',
+};
 
-console.log(array1.concat(arrayLike));  //[1, 2, Object]
+console.log(array1.concat(arrayLike)); //[1, 2, Object]
 
+// ITERATE: forEach
+// **********************************
+
+//The arr.forEach method allows to run a function for every element of the array.
+// syntax:
+`
+arr.forEach(function(item, index, array) {
+  // ... do something with item
+});
+`
+
+const foods = ["pizza", "chicken nuggets", "milk shake", "pasta"]
+
+// foods.forEach(alert);
+foods.forEach(index=>console.log(index));
+
+foods.forEach(item=>console.log(item));
+
+foods.forEach((item, index, array)=>console.log(`The index of ${item} is ${index} in the array ${array}`));
 

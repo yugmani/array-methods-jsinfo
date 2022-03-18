@@ -57,21 +57,40 @@ console.log(myNumbers); //[3, undefined, 4, 2]  // ? undefined
 // *****************************
 
 // syntax: arr.splice(start[, deleteCount, elem1, ..., elemN])
-// it modifies 'arr' starting from the index 'start', 
-// removes 'deleteCount' elements and 
+// it modifies 'arr' starting from the index 'start',
+// removes 'deleteCount' elements and
 // then inserts elem1, ..., ...elemN
 // Returns the array of removed elements
 
-const myCourses = ["HTML", "CSS", "Javascript", "jQuery"]
+const myCourses = ['HTML', 'CSS', 'Javascript', 'jQuery'];
 
 //to remove one element starting from index 1;
-let oneRemoved = myCourses.splice(1, 1);  //
-console.log(oneRemoved);    //["CSS"]
+let oneRemoved = myCourses.splice(1, 1); //
+console.log(oneRemoved); //["CSS"]
 console.log(myCourses); // ["HTML", "Javascript", "jQuery"]
 
-const numbers = [5,0, 3, 7, 4]
-let removeAndAdd = numbers.splice(1,2, "zero", "three");
-console.log(removeAndAdd);  //[0, 3]
+// remove some elements and replace by other elements
+const numbers = [5, 0, 3, 7, 4];
+let removeAndAdd = numbers.splice(1, 2, 'zero', 'three');
+console.log(removeAndAdd); //[0, 3]
 console.log(numbers); //[5, "zero", "three", 7, 4]
 
+// inserting some elements without removing any
+// For that we need to set deleteCount to 0
 
+const missing = ['one', 'two', 'five', 'six'];
+const noRemove = missing.splice(2, 0, 'three', 'four');
+console.log(noRemove); // [];
+console.log(missing); //["one", "two", "three", "four", "five", "six"]
+
+// Negative indexes allowed
+// negative indexes specify the position from the end of the array.
+// -1 one step from the end
+const negativeRemove = missing.splice(-2, 2); //remove 2 elements from last
+console.log(negativeRemove); // ["five", "six"]
+console.log(missing);   //["one", "two", "three", "four"]
+
+// Remove rest of the elements starting index 1;
+const negativeDelete = missing.splice(1);
+console.log(negativeDelete);  //["two", "three", "four"]
+console.log(missing); //["one"]

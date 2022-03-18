@@ -124,3 +124,30 @@ console.log(vowels.slice(0,2)); //["a", "e"]
 
 console.log(vowels.slice(0,0)); //[]
 
+// ARRAY.CONCAT() METHODS
+// **********************************
+
+// creates a new array that includes values from other arrays and additional items.
+// It accepts any number of arguments – either arrays or values.
+// Syntax: arr.concat(arg1, arg2...)
+// The result is a new array containing items from arr, then arg1, arg2 etc.
+
+const array1 = [1, 2];
+const array2 = [3, 4];
+const concatOf12 = array1.concat(array2);
+console.log(concatOf12);  //[1, 2, 3, 4]
+
+console.log(array1.concat("one", "two")); // [1, 2, "one", "two"]
+
+console.log(array2.concat([5, 6]));  // [3, 4, 5, 6]
+
+console.log(array2.concat([11, 12], [33, 44])); // [3, 4, 11, 12, 33, 44]
+
+// Dealing with objects even arraylike objects.
+const arrayLike = {
+  0:"zero"
+}
+
+console.log(array1.concat(arrayLike));  //[1, 2, Object]
+
+

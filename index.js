@@ -94,3 +94,33 @@ console.log(missing);   //["one", "two", "three", "four"]
 const negativeDelete = missing.splice(1);
 console.log(negativeDelete);  //["two", "three", "four"]
 console.log(missing); //["one"]
+
+// ARRAU.SLICE() METHOD
+// ******************************************
+
+// Syntax: arr.slice([start], [end])
+// It returns a new array copying to it all items from index start to end (not including end)
+// Both start and end can be negative, in that case position from array end is assumed.
+// It’s similar to a string method str.slice, but instead of substrings it makes subarrays.
+//We can also call it without arguments: arr.slice() creates a copy of arr. That’s often used to obtain a copy for further transformations that should not affect the original array.
+
+const vowels = ["a", "e", "i", "o", "u"];
+
+const simpleSlice = vowels.slice(1, 3);
+console.log(simpleSlice); // ["e", "i"] --> start at index 1 upto index 3(exclusive).
+console.log(vowels);  // ["a", "e", "i", "o", "u"] -->original one is not mutated
+
+const negativeSlice = vowels.slice(-2);   
+console.log(negativeSlice); //["o", "u"] -->last two elements
+
+const extraSlice = vowels.slice(-3, -1);
+console.log(extraSlice);  //["i", "o"]; -->last index not included
+
+console.log(vowels.slice()) //["a", "e", "i", "o", "u"] -->not sliced;
+
+console.log(vowels.slice(2)); //["i", "o", "u"] -->all the rest starting at index 2;
+
+console.log(vowels.slice(0,2)); //["a", "e"]
+
+console.log(vowels.slice(0,0)); //[]
+

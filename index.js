@@ -283,22 +283,41 @@ let results = arr.filter(function(item, index, array) {
   // if true item is pushed to results and the iteration continues
   // returns empty array if nothing found
 });
-`
+`;
 
 let students = [
-  {id:1, name:"biden", age: 23 },
-  {id:2, name:"shelly", age: 17},
-  {id:3, name:"jed", age: 19 },
-  {id:4, name:"milan", age:12 },
-  {id:5, name:"von", age:35 }
+  { id: 1, name: 'biden', age: 23 },
+  { id: 2, name: 'shelly', age: 17 },
+  { id: 3, name: 'jed', age: 19 },
+  { id: 4, name: 'milan', age: 12 },
+  { id: 5, name: 'von', age: 35 },
 ];
 
-let top3 = students.filter(student=>student.id < 4);
-console.log(top3);  // [ {id:1, name:"biden", age: 23 },  {id:2, name:"shelly", age: 17},  {id:3, name:"jed", age: 19 }]
-console.log(top3.length)    //3
+let top3 = students.filter((student) => student.id < 4);
+console.log(top3); // [ {id:1, name:"biden", age: 23 },  {id:2, name:"shelly", age: 17},  {id:3, name:"jed", age: 19 }]
+console.log(top3.length); //3
 
-let young = students.filter(student=>student.age < 18);
+let young = students.filter((student) => student.age < 18);
 console.log(young); // [ {id:2, name:"shelly", age: 17},  {id:4, name:"milan", age:12 }]
-console.log(young.length)    //2
+console.log(young.length); // arr.map() //2
+// **************************************
 
+// It calls the function for each element of the array and returns the array of results.
 
+// syntax:
+`
+let result = arr.map(function(item, index, array) {
+  // returns the new value instead of item
+});
+`;
+let mountains = ['Sagarmatha', 'Annapurna', 'Dhawalagiri', 'manasalu'];
+
+let wordLength = mountains.map((mount) => mount.length);
+console.log(wordLength); //[10, 9, 11, 8]
+
+let upperMounts = mountains.map((mount) => mount.toUpperCase());
+console.log(upperMounts); // ["SAGARMATHA", "ANNAPURNA", "DHAWALAGIRI", "MANASALU"]
+
+let series = [1, 2, 3, 4, 5];
+let doubleSeries = series.map((num) => num * 2);
+console.log(doubleSeries); //[2, 4, 6, 8, 10]

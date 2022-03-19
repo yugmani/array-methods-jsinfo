@@ -166,3 +166,67 @@ foods.forEach(item=>console.log(item));
 
 foods.forEach((item, index, array)=>console.log(`The index of ${item} is ${index} in the array ${array}`));
 
+
+// Searching in array
+// ********************************
+
+// indexOf/lastIndexOf and includes
+// --------------------------------------
+
+let searchArray = [2, 0, 11, true, false, 11, "hello"];
+
+// arr.indexOf(item, from) – looks for item starting from index from, and returns the index where it was found, otherwise -1.
+
+let index = searchArray.indexOf(11, 0);
+console.log("Index: "+ index);   //2;
+
+
+index = searchArray.indexOf(100, 0);
+console.log(index);   //-1;
+
+index = searchArray.indexOf(2, 1);
+console.log(index);   //-1;
+
+index = searchArray.indexOf(true, 0);
+console.log(index);   //3;
+
+// arr.lastIndexOf(item, from) – same, but looks for from right to left.
+let lastIndex = searchArray.lastIndexOf(11, searchArray.length);
+console.log(lastIndex);   //5
+
+// arr.includes(item, from) – looks for item starting from index from, returns true if found.
+// If we want to check for inclusion, and don’t want to know the exact index, then arr.includes is preferred.
+// Also, a very minor difference of includes is that it correctly handles NaN, unlike indexOf/lastIndexOf
+
+let included = searchArray.includes('hello', 0);
+console.log(included);    //true;
+
+included = searchArray.includes(2, 3);
+console.log(included);    //false;
+
+included = searchArray.includes(111, 0);
+console.log(included);    //false;
+
+let nanArray = [NaN, null, undefined, true, false, 0, 1];
+console.log(nanArray.indexOf(NaN));   // -1 ?? Note that the methods use === comparison. So, if we look for false, it finds exactly false and not the zero.
+
+console.log(nanArray.includes(NaN));  //true
+
+console.log(nanArray.indexOf(null));  //1
+console.log(nanArray.includes(null));  //true
+
+console.log(nanArray.indexOf(undefined));  //2
+console.log(nanArray.includes(undefined));  //true
+
+console.log(nanArray.indexOf(false));  //4
+console.log(nanArray.includes(undefined));  //true
+
+console.log(nanArray.indexOf(0));  //5
+console.log(nanArray.includes(0));  //true
+
+console.log(nanArray.indexOf(1));  //6
+console.log(nanArray.includes(1));  //true
+
+console.log(nanArray.indexOf("true"));  //-1
+console.log(nanArray.includes("true"));  //false
+

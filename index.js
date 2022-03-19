@@ -328,7 +328,7 @@ var isAnagram = function(test, original) {
   let test1 = test.toLowerCase();
   let original1 = original.toLowerCase();
 
-  if(test1.length === original1.length && test1 !== original1 ){
+  if(test1.length === original1.length && test !== original ){
     for(let i=0; i<test1.length; i++){
       if(!original1.includes(test1[i])) return false;
     }
@@ -347,4 +347,4 @@ console.log(isAnagram("ound", "round"));
 console.log(isAnagram("apple", "pale"));
 console.log(isAnagram("!@#", "@#!"));
 console.log(isAnagram("123", "231"));
-console.log(isAnagram("but", "but"));
+console.log(isAnagram("but", "But"));

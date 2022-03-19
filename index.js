@@ -321,3 +321,30 @@ console.log(upperMounts); // ["SAGARMATHA", "ANNAPURNA", "DHAWALAGIRI", "MANASAL
 let series = [1, 2, 3, 4, 5];
 let doubleSeries = series.map((num) => num * 2);
 console.log(doubleSeries); //[2, 4, 6, 8, 10]
+
+
+// write the function isAnagram
+var isAnagram = function(test, original) {  
+  let test1 = test.toLowerCase();
+  let original1 = original.toLowerCase();
+
+  if(test1.length === original1.length && test1 !== original1 ){
+    for(let i=0; i<test1.length; i++){
+      if(!original1.includes(test1[i])) return false;
+    }
+
+    return true;
+  } else { 
+    return false
+  }; 
+
+}
+
+console.log(isAnagram("Twoo", "WooT"));
+console.log(isAnagram("dumble", "bumble"));
+console.log(isAnagram("Buckethead", "DeathCubeK"));
+console.log(isAnagram("ound", "round"));
+console.log(isAnagram("apple", "pale"));
+console.log(isAnagram("!@#", "@#!"));
+console.log(isAnagram("123", "231"));
+console.log(isAnagram("but", "but"));

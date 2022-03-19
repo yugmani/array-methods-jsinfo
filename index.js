@@ -155,17 +155,18 @@ console.log(array1.concat(arrayLike)); //[1, 2, Object]
 arr.forEach(function(item, index, array) {
   // ... do something with item
 });
-`
+`;
 
-const foods = ["pizza", "chicken nuggets", "milk shake", "pasta"]
+const foods = ['pizza', 'chicken nuggets', 'milk shake', 'pasta'];
 
 // foods.forEach(alert);
-foods.forEach(index=>console.log(index));
+foods.forEach((index) => console.log(index));
 
-foods.forEach(item=>console.log(item));
+foods.forEach((item) => console.log(item));
 
-foods.forEach((item, index, array)=>console.log(`The index of ${item} is ${index} in the array ${array}`));
-
+foods.forEach((item, index, array) =>
+  console.log(`The index of ${item} is ${index} in the array ${array}`)
+);
 
 // Searching in array
 // ********************************
@@ -173,60 +174,97 @@ foods.forEach((item, index, array)=>console.log(`The index of ${item} is ${index
 // indexOf/lastIndexOf and includes
 // --------------------------------------
 
-let searchArray = [2, 0, 11, true, false, 11, "hello"];
+let searchArray = [2, 0, 11, true, false, 11, 'hello'];
 
 // arr.indexOf(item, from) – looks for item starting from index from, and returns the index where it was found, otherwise -1.
 
 let index = searchArray.indexOf(11, 0);
-console.log("Index: "+ index);   //2;
-
+console.log('Index: ' + index); //2;
 
 index = searchArray.indexOf(100, 0);
-console.log(index);   //-1;
+console.log(index); //-1;
 
 index = searchArray.indexOf(2, 1);
-console.log(index);   //-1;
+console.log(index); //-1;
 
 index = searchArray.indexOf(true, 0);
-console.log(index);   //3;
+console.log(index); //3;
 
 // arr.lastIndexOf(item, from) – same, but looks for from right to left.
 let lastIndex = searchArray.lastIndexOf(11, searchArray.length);
-console.log(lastIndex);   //5
+console.log(lastIndex); //5
 
 // arr.includes(item, from) – looks for item starting from index from, returns true if found.
 // If we want to check for inclusion, and don’t want to know the exact index, then arr.includes is preferred.
 // Also, a very minor difference of includes is that it correctly handles NaN, unlike indexOf/lastIndexOf
 
 let included = searchArray.includes('hello', 0);
-console.log(included);    //true;
+console.log(included); //true;
 
 included = searchArray.includes(2, 3);
-console.log(included);    //false;
+console.log(included); //false;
 
 included = searchArray.includes(111, 0);
-console.log(included);    //false;
+console.log(included); //false;
 
 let nanArray = [NaN, null, undefined, true, false, 0, 1];
-console.log(nanArray.indexOf(NaN));   // -1 ?? Note that the methods use === comparison. So, if we look for false, it finds exactly false and not the zero.
+console.log(nanArray.indexOf(NaN)); // -1 ?? Note that the methods use === comparison. So, if we look for false, it finds exactly false and not the zero.
 
-console.log(nanArray.includes(NaN));  //true
+console.log(nanArray.includes(NaN)); //true
 
-console.log(nanArray.indexOf(null));  //1
-console.log(nanArray.includes(null));  //true
+console.log(nanArray.indexOf(null)); //1
+console.log(nanArray.includes(null)); //true
 
-console.log(nanArray.indexOf(undefined));  //2
-console.log(nanArray.includes(undefined));  //true
+console.log(nanArray.indexOf(undefined)); //2
+console.log(nanArray.includes(undefined)); //true
 
-console.log(nanArray.indexOf(false));  //4
-console.log(nanArray.includes(undefined));  //true
+console.log(nanArray.indexOf(false)); //4
+console.log(nanArray.includes(undefined)); //true
 
-console.log(nanArray.indexOf(0));  //5
-console.log(nanArray.includes(0));  //true
+console.log(nanArray.indexOf(0)); //5
+console.log(nanArray.includes(0)); //true
 
-console.log(nanArray.indexOf(1));  //6
-console.log(nanArray.includes(1));  //true
+console.log(nanArray.indexOf(1)); //6
+console.log(nanArray.includes(1)); //true
 
-console.log(nanArray.indexOf("true"));  //-1
-console.log(nanArray.includes("true"));  //false
+console.log(nanArray.indexOf('true')); //-1
+console.log(nanArray.includes('true')); //false
 
+// find and findIndex
+
+// arr.find(fn) method comes in handy if we want to find an object with the specific condition in an array of objects.
+
+// syntax:
+`
+let result = arr.find(function(item, index, array) {
+  // if true is returned, item is returned and iteration is stopped
+  // for falsy scenario returns undefined
+});
+`;
+// The function is called for elements of the array, one after another:
+
+// 'item' is the element.
+// 'index' is its index.
+// 'array' is the array itself.
+
+// If it returns true, the search is stopped, the item is returned. If nothing found, undefined is returned.
+
+const users = [
+  { id: 1, name: 'John' },
+  { id: 2, name: 'Pete' },
+  { id: 3, name: 'Mary' },
+];
+
+let myUser = users.find((item) => item.id === 2);
+console.log(myUser); //{id: 2, name: "Pete"}
+
+let newUser = users.find((user) => user.name === 'Mary');
+console.log(newUser); //{id: 3, name: "Mary"}
+
+// The arr.findIndex method is essentially the same, but it returns the index where the element was found instead of the element itself and -1 is returned when nothing is found.
+
+let oddUser = users.findIndex((user) => user.name === 'John');
+console.log(oddUser); //0 -->zero index;
+
+let noUser = users.findIndex((user) => user.id === 101);
+console.log(noUser); //-1 -->the user with id '101' is not found.

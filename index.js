@@ -231,6 +231,7 @@ console.log(nanArray.indexOf('true')); //-1
 console.log(nanArray.includes('true')); //false
 
 // find and findIndex
+// *******************************
 
 // arr.find(fn) method comes in handy if we want to find an object with the specific condition in an array of objects.
 
@@ -268,3 +269,36 @@ console.log(oddUser); //0 -->zero index;
 
 let noUser = users.findIndex((user) => user.id === 101);
 console.log(noUser); //-1 -->the user with id '101' is not found.
+
+// filter
+// *******************************
+
+// The find method looks for a single (first) element that makes the function return true.
+
+// The syntax is similar to find, but filter returns an array of all matching elements:
+
+// syntax:
+`
+let results = arr.filter(function(item, index, array) {
+  // if true item is pushed to results and the iteration continues
+  // returns empty array if nothing found
+});
+`
+
+let students = [
+  {id:1, name:"biden", age: 23 },
+  {id:2, name:"shelly", age: 17},
+  {id:3, name:"jed", age: 19 },
+  {id:4, name:"milan", age:12 },
+  {id:5, name:"von", age:35 }
+];
+
+let top3 = students.filter(student=>student.id < 4);
+console.log(top3);  // [ {id:1, name:"biden", age: 23 },  {id:2, name:"shelly", age: 17},  {id:3, name:"jed", age: 19 }]
+console.log(top3.length)    //3
+
+let young = students.filter(student=>student.age < 18);
+console.log(young); // [ {id:2, name:"shelly", age: 17},  {id:4, name:"milan", age:12 }]
+console.log(young.length)    //2
+
+

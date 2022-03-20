@@ -270,7 +270,7 @@ console.log(oddUser); //0 -->zero index;
 let noUser = users.findIndex((user) => user.id === 101);
 console.log(noUser); //-1 -->the user with id '101' is not found.
 
-// filter
+// arr.filter()
 // *******************************
 
 // The find method looks for a single (first) element that makes the function return true.
@@ -299,7 +299,13 @@ console.log(top3.length); //3
 
 let young = students.filter((student) => student.age < 18);
 console.log(young); // [ {id:2, name:"shelly", age: 17},  {id:4, name:"milan", age:12 }]
-console.log(young.length); // arr.map() //2
+console.log(young.length);  //2
+
+
+//TRANSFORM an array
+// --------------------------------------
+
+// arr.map()
 // **************************************
 
 // It calls the function for each element of the array and returns the array of results.
@@ -322,8 +328,83 @@ let series = [1, 2, 3, 4, 5];
 let doubleSeries = series.map((num) => num * 2);
 console.log(doubleSeries); //[2, 4, 6, 8, 10]
 
+// arr.sort()
+// ********************************
 
-// write the function isAnagram
+// The call to arr.sort() sorts the array in place, changing its element order.
+// It also returns the sorted array, but the returned value is usually ignored, as arr itself is modified.
+
+const letters = ["c", "x", "a", "m"];
+const sortedLetters = letters.sort();
+console.log(sortedLetters);   //["a", "c", "m", "x"]
+
+const age = [12, 9, 11, 7];
+console.log(age.sort());  // [11, 12, 7, 9]
+// Did you notice anything strange in the outcome?
+// Order is changed but incorrect. Why?
+
+// -----------------------------------------------
+// THE ITEMS ARE SORTED AS STRINGS BY DEFAULT
+// -----------------------------------------------
+
+//Literally, all elements are converted to strings for comparisons. For strings, lexicographic ordering is applied and indeed "7" > "12".
+
+// To use our own sorting order, we need to supply a function as the argument of arr.sort().
+
+// The function should compare two arbitrary values and return:
+
+function compare(x, y){
+  if(x > y) return 1
+  else if (x == y) return 0;
+  else return -1
+}
+
+// Let's sort array as numbers:
+let sortedAge = age.sort(compare);
+console.log(sortedAge);   //[7, 9, 11, 12]
+// Now it works as intended;
+
+//The arr can be array of anything, right? It may contain numbers or strings or objects or whatever.
+
+// How about this function with letters?
+console.log(letters.sort(compare)); //["a", "c", "m", "x"]
+
+// To sort it, we need an ordering function that knows how to compare its elements. The default is a string order.
+
+//  It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the fn which does the comparison.
+
+const allNumbers = [1, -2, 15, 2, 0, 8];
+const sortedAll = allNumbers.sort(function(a, b){
+  return a - b;
+});
+
+console.log(sortedAll);   //[-2, 0, 1, 2, 8, 15]
+
+// Neat and short sorting
+// arr.sort((a, b)=> a - b);
+
+console.log([6, 11, -3, 1, 1/5, 0].sort((a, b) => a - b));
+// [-3, 0, 0.2, 1, 6, 11]
+
+// Use localeCompare for strings
+// Strings comparison algorithm compares letters by their codes by default.
+
+//For many alphabets, it’s better to use str.localeCompare method to correctly sort letters, such as Ö.
+
+// For example, let’s sort a few countries in German:
+let countries = ['Österreich', 'Andorra', 'Vietnam'];
+console.log(countries.sort((a, b) => a - b)); 
+// ["Österreich", "Andorra", "Vietnam"] -> not intended result?
+
+console.log(countries.sort((a, b) => a > b ? 1 : -1)); 
+// ["Andorra", "Vietnam", "Österreich"] -> still not intended result?
+
+console.log(countries.sort((a, b) => a.localeCompare(b))); 
+// ["Andorra", "Österreich", "Vietnam"] -> Now it is as intended
+
+
+
+
 // write the function isAnagram
 var isAnagram = function(test, original) {    
   if(test.length === original.length && test != original ){

@@ -418,36 +418,76 @@ console.log(laptops.reverse()); // ["Toshiba", "HP", "Asus", "Dell", "Logitech"]
 // The str.split(delim) method splits the string into an array by the given delimiter delim.
 
 // split into letters
-let lap = "logitech";
-let splitLap = lap.split("");
-console.log(splitLap);  //["l", "o", "g", "i", "t", "e", "c", "h"]
+let lap = 'logitech';
+let splitLap = lap.split('');
+console.log(splitLap); //["l", "o", "g", "i", "t", "e", "c", "h"]
 
 // split into commas
 let laptopWindows = 'Logitech, Dell, Asus, HP, Toshiba';
-let splitLaptops = laptopWindows.split(",");
-console.log(splitLaptops);  // ["Logitech", " Dell", " Asus", " HP", " Toshiba"]
+let splitLaptops = laptopWindows.split(',');
+console.log(splitLaptops); // ["Logitech", " Dell", " Asus", " HP", " Toshiba"]
 
 // split into symbols
-const tags = "#code#web#developer#javascript#design";
-console.log(tags.split("#")); // ["", "code", "web", "developer", "javascript", "design"]
+const tags = '#code#web#developer#javascript#design';
+console.log(tags.split('#')); // ["", "code", "web", "developer", "javascript", "design"]
 
 // The split method has an optional second numeric argument – a limit on the array length. If it is provided, then the extra elements are ignored. In practice it is rarely used though:
 
-let splitIgnored = laptopWindows.split(", ", 3);
-console.log(splitIgnored);  //["Logitech", "Dell", "Asus"]
+let splitIgnored = laptopWindows.split(', ', 3);
+console.log(splitIgnored); //["Logitech", "Dell", "Asus"]
 
 // arr.join(glue)
 // ****************************************
 
 //The call arr.join(glue) does the reverse to split. It creates a string of arr items joined by glue between them.
-const lapArray = ['Logitech', 'Dell', 'Asus', 'HP', 'Toshiba']
+const lapArray = ['Logitech', 'Dell', 'Asus', 'HP', 'Toshiba'];
 const laptopJoins = lapArray.join();
 console.log(laptopJoins); //Logitech,Dell,Asus,HP,Toshiba
 
-const newJoins = lapArray.join("-");
-console.log(newJoins);  //Logitech-Dell-Asus-HP-Toshiba
+const newJoins = lapArray.join('-');
+console.log(newJoins); //Logitech-Dell-Asus-HP-Toshiba
 
+//arr.reduce(fn)/ arr.reduceRight(fn)
+//  ****************************************
 
+// It is used to calculate a single value based on the array.
+// syntax:
+`
+let value = arr.reduce(function(accumulator, item, index, array) {
+  // ...
+}, [initial]);
+`;
+// The function is applied to all array elements one after another and “carries on” its result to the next call.
+// Arguments:
+
+// a.   accumulator – is the result of the previous function call, equals initial the first time (if initial is provided).
+// b.   item – is the current array item.
+// c.   index – is its position.
+// d.   array – is the array.
+
+//As function is applied, the result of the previous function call is passed to the next one as the first argument.
+
+//So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end it becomes the result of reduce.
+
+// example of arr.reduce
+const newNumbers = [1, 2, 3, 4, 5];
+let result = newNumbers.reduce((sum, current) => sum + current, 0);
+console.log(result); //15
+
+//[INITIAL]: if there’s no initial, then reduce takes the first element of the array as the initial value and starts the iteration from the 2nd element.
+
+//But such use requires an extreme care. If the array is empty, then reduce call without initial value gives an error.
+
+const myCode = [];
+// console.log(myCode.reduce((sum, current)=> sum + current));
+// index.js:349
+// Error: Reduce of empty array with no initial value
+
+// -----------------------------------------------------
+// So it’s advised to always specify the initial value.
+// -----------------------------------------------------
+
+// The method arr.reduceRight does the same, but goes from right to left.
 
 // write the function isAnagram
 var isAnagram = function (test, original) {

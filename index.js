@@ -299,8 +299,7 @@ console.log(top3.length); //3
 
 let young = students.filter((student) => student.age < 18);
 console.log(young); // [ {id:2, name:"shelly", age: 17},  {id:4, name:"milan", age:12 }]
-console.log(young.length);  //2
-
+console.log(young.length); //2
 
 //TRANSFORM an array
 // --------------------------------------
@@ -334,12 +333,12 @@ console.log(doubleSeries); //[2, 4, 6, 8, 10]
 // The call to arr.sort() sorts the array in place, changing its element order.
 // It also returns the sorted array, but the returned value is usually ignored, as arr itself is modified.
 
-const letters = ["c", "x", "a", "m"];
+const letters = ['c', 'x', 'a', 'm'];
 const sortedLetters = letters.sort();
-console.log(sortedLetters);   //["a", "c", "m", "x"]
+console.log(sortedLetters); //["a", "c", "m", "x"]
 
 const age = [12, 9, 11, 7];
-console.log(age.sort());  // [11, 12, 7, 9]
+console.log(age.sort()); // [11, 12, 7, 9]
 // Did you notice anything strange in the outcome?
 // Order is changed but incorrect. Why?
 
@@ -353,15 +352,15 @@ console.log(age.sort());  // [11, 12, 7, 9]
 
 // The function should compare two arbitrary values and return:
 
-function compare(x, y){
-  if(x > y) return 1
+function compare(x, y) {
+  if (x > y) return 1;
   else if (x == y) return 0;
-  else return -1
+  else return -1;
 }
 
 // Let's sort array as numbers:
 let sortedAge = age.sort(compare);
-console.log(sortedAge);   //[7, 9, 11, 12]
+console.log(sortedAge); //[7, 9, 11, 12]
 // Now it works as intended;
 
 //The arr can be array of anything, right? It may contain numbers or strings or objects or whatever.
@@ -374,16 +373,16 @@ console.log(letters.sort(compare)); //["a", "c", "m", "x"]
 //  It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the fn which does the comparison.
 
 const allNumbers = [1, -2, 15, 2, 0, 8];
-const sortedAll = allNumbers.sort(function(a, b){
+const sortedAll = allNumbers.sort(function (a, b) {
   return a - b;
 });
 
-console.log(sortedAll);   //[-2, 0, 1, 2, 8, 15]
+console.log(sortedAll); //[-2, 0, 1, 2, 8, 15]
 
 // Neat and short sorting
 // arr.sort((a, b)=> a - b);
 
-console.log([6, 11, -3, 1, 1/5, 0].sort((a, b) => a - b));
+console.log([6, 11, -3, 1, 1 / 5, 0].sort((a, b) => a - b));
 // [-3, 0, 0.2, 1, 6, 11]
 
 // Use localeCompare for strings
@@ -393,52 +392,109 @@ console.log([6, 11, -3, 1, 1/5, 0].sort((a, b) => a - b));
 
 // For example, let’s sort a few countries in German:
 let countries = ['Österreich', 'Andorra', 'Vietnam'];
-console.log(countries.sort((a, b) => a - b)); 
+console.log(countries.sort((a, b) => a - b));
 // ["Österreich", "Andorra", "Vietnam"] -> not intended result?
 
-console.log(countries.sort((a, b) => a > b ? 1 : -1)); 
+console.log(countries.sort((a, b) => (a > b ? 1 : -1)));
 // ["Andorra", "Vietnam", "Österreich"] -> still not intended result?
 
-console.log(countries.sort((a, b) => a.localeCompare(b))); 
+console.log(countries.sort((a, b) => a.localeCompare(b)));
 // ["Andorra", "Österreich", "Vietnam"] -> Now it is as intended
 
+// arr.reverse();
+// ********************************************
+
+// The method arr.reverse reverses the order of elements in arr.
+// It also returns the array arr after the reversal.
+const num1 = [1, 2, 3, 4, 5];
+console.log(num1.reverse()); //[5, 4, 3, 2, 1]
+
+const laptops = ['Logitech', 'Dell', 'Asus', 'HP', 'Toshiba'];
+console.log(laptops.reverse()); // ["Toshiba", "HP", "Asus", "Dell", "Logitech"]
+
+// arr.split() and arr.join()
+// ********************************************
+
+// The str.split(delim) method splits the string into an array by the given delimiter delim.
+
+// split into letters
+let lap = "logitech";
+let splitLap = lap.split("");
+console.log(splitLap);  //["l", "o", "g", "i", "t", "e", "c", "h"]
+
+// split into commas
+let laptopWindows = 'Logitech, Dell, Asus, HP, Toshiba';
+let splitLaptops = laptopWindows.split(",");
+console.log(splitLaptops);  // ["Logitech", " Dell", " Asus", " HP", " Toshiba"]
+
+// split into symbols
+const tags = "#code#web#developer#javascript#design";
+console.log(tags.split("#")); // ["", "code", "web", "developer", "javascript", "design"]
+
+// The split method has an optional second numeric argument – a limit on the array length. If it is provided, then the extra elements are ignored. In practice it is rarely used though:
+
+let splitIgnored = laptopWindows.split(", ", 3);
+console.log(splitIgnored);  //["Logitech", "Dell", "Asus"]
+
+// arr.join(glue)
+// ****************************************
+
+//The call arr.join(glue) does the reverse to split. It creates a string of arr items joined by glue between them.
+const lapArray = ['Logitech', 'Dell', 'Asus', 'HP', 'Toshiba']
+const laptopJoins = lapArray.join();
+console.log(laptopJoins); //Logitech,Dell,Asus,HP,Toshiba
+
+const newJoins = lapArray.join("-");
+console.log(newJoins);  //Logitech-Dell-Asus-HP-Toshiba
 
 
 
 // write the function isAnagram
-var isAnagram = function(test, original) {    
-  if(test.length === original.length && test != original ){
-      let test1 =test.toLowerCase().replace(/[^a-z0-9]/gi, '').replace(/\s/g, '').split("").sort().join(""); 
-//       let testUnique = [... new Set(test1)];
-      let original1 = original.toLowerCase().replace(/[^a-z0-9]/gi, '').replace(/\s/g, '').split("").sort().join(""); 
-//       let originalUnique = [... new Set(original1)];
+var isAnagram = function (test, original) {
+  if (test.length === original.length && test != original) {
+    let test1 = test
+      .toLowerCase()
+      .replace(/[^a-z0-9]/gi, '')
+      .replace(/\s/g, '')
+      .split('')
+      .sort()
+      .join('');
+    //       let testUnique = [... new Set(test1)];
+    let original1 = original
+      .toLowerCase()
+      .replace(/[^a-z0-9]/gi, '')
+      .replace(/\s/g, '')
+      .split('')
+      .sort()
+      .join('');
+    //       let originalUnique = [... new Set(original1)];
     let isInclude = false;
-    
-    for(let i=0; i<test1.length; i++){
-    if(test1[i] != original1[i]) {
-      return false;
+
+    for (let i = 0; i < test1.length; i++) {
+      if (test1[i] != original1[i]) {
+        return false;
       } else {
         isInclude = true;
       }
     }
 
-   return isInclude;
-  } else { 
-    return false
-  }; 
-}
+    return isInclude;
+  } else {
+    return false;
+  }
+};
 
-console.log(isAnagram("Twoo", "WooT"));   // true
-console.log(isAnagram("dumble", "bumble"));   //false
-console.log(isAnagram("Buckethead", "DeathCubeK")); //true
-console.log(isAnagram("ound", "round"));    //false
-console.log(isAnagram("apple", "pale"));    //false
-console.log(isAnagram("!@#", "@#!"));   //false ? not characters/numbers
-console.log(isAnagram("123", "231"));   // true
-console.log(isAnagram("but", "But"));   //true
-console.log(isAnagram("230", 302));     //false
-console.log(isAnagram("ab!", "ab"));   //false
-console.log(isAnagram("12$3", "231"));   // false
-console.log(isAnagram("bu t", "tu b"));   //true
-console.log(isAnagram("bu t", "tub"));   //false
-console.log(isAnagram("23a", "a32"));     //true
+console.log(isAnagram('Twoo', 'WooT')); // true
+console.log(isAnagram('dumble', 'bumble')); //false
+console.log(isAnagram('Buckethead', 'DeathCubeK')); //true
+console.log(isAnagram('ound', 'round')); //false
+console.log(isAnagram('apple', 'pale')); //false
+console.log(isAnagram('!@#', '@#!')); //false ? not characters/numbers
+console.log(isAnagram('123', '231')); // true
+console.log(isAnagram('but', 'But')); //true
+console.log(isAnagram('230', 302)); //false
+console.log(isAnagram('ab!', 'ab')); //false
+console.log(isAnagram('12$3', '231')); // false
+console.log(isAnagram('bu t', 'tu b')); //true
+console.log(isAnagram('bu t', 'tub')); //false
+console.log(isAnagram('23a', 'a32')); //true

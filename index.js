@@ -547,6 +547,33 @@ console.log(soldiers[1].age); // 23
 
 // A call to users.filter(army.canJoin, army) can be replaced with users.filter(user => army.canJoin(user)), that does the same. The latter is used more often, as it’s a bit easier to understand for most people.
 
+// arr.at(index)
+// ********************************
+
+// The at() method takes an integer value and returns the item at that index, allowing for positive and negative integers.
+// Negative integers count back from the last item in the array.
+// Returns the element in the array matching the given index. 
+// Returns undefined if the given index can not be found.
+
+const roll = [11, 23, 45,67, 78, 100, 33, 7]
+let item3 = roll.at(2); 
+console.log(item3);   //45;
+
+let itemLast = roll.at(-1);
+console.log(itemLast);  //7
+
+console.log(roll.at(-3));   //100
+console.log(roll.at(11));   //undefined ->?Why
+
+// arr.slice() vs arr.at()
+// -------------------------------------
+
+// slice() method returns an array.
+// at() method returns an element.
+console.log(roll.at(1));   //23
+console.log(roll.slice(1, 2));  //[23]
+
+
 // write the function isAnagram
 var isAnagram = function (test, original) {
   if (test.length === original.length && test != original) {

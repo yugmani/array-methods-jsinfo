@@ -489,6 +489,64 @@ const myCode = [];
 
 // The method arr.reduceRight does the same, but goes from right to left.
 
+// Array.isArray()
+// ******************************************
+
+// Arrays do not form a separate language type. They are based on objects.
+
+// So typeof does not help to distinguish a plain object from an array:
+const obj1 = {
+  name: 'Leon',
+  age: 23,
+};
+
+console.log(typeof obj1); //object
+
+const arr1 = ['Leon', 23];
+console.log(typeof arr1); //object ?why
+
+// there’s a special method for that: Array.isArray(value).
+// It returns true if the value is an array, and false otherwise.
+
+console.log('Is it Array: ', Array.isArray(obj1)); //false
+console.log('Is it Array: ', Array.isArray(arr1)); //true
+
+// Most methods support “thisArg”
+// ******************************************
+
+// Almost all array methods that call functions – like find, filter, map, with a notable exception of sort, accept an optional additional parameter thisArg.
+
+// syntax:
+`
+arr.find(func, thisArg);
+arr.filter(func, thisArg);
+arr.map(func, thisArg);
+// ...
+// thisArg is the optional last argument
+`;
+// The value of thisArg parameter becomes this for func.
+
+let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
+  },
+};
+
+let usersAge = [{ age: 16 }, { age: 20 }, { age: 23 }, { age: 30 }];
+
+// find users, for who army.canJoin returns true
+let soldiers = usersAge.filter(army.canJoin, army);
+
+console.log(soldiers.length); // 2
+console.log(soldiers[0].age); // 20
+console.log(soldiers[1].age); // 23
+
+// If in the example above we used users.filter(army.canJoin), then army.canJoin would be called as a standalone function, with this=undefined, thus leading to an instant error.
+
+// A call to users.filter(army.canJoin, army) can be replaced with users.filter(user => army.canJoin(user)), that does the same. The latter is used more often, as it’s a bit easier to understand for most people.
+
 // write the function isAnagram
 var isAnagram = function (test, original) {
   if (test.length === original.length && test != original) {

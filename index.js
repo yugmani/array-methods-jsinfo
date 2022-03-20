@@ -324,27 +324,40 @@ console.log(doubleSeries); //[2, 4, 6, 8, 10]
 
 
 // write the function isAnagram
-var isAnagram = function(test, original) {  
-  let test1 = test.toLowerCase();
-  let original1 = original.toLowerCase();
-
-  if(test1.length === original1.length && test !== original ){
+// write the function isAnagram
+var isAnagram = function(test, original) {    
+  if(test.length === original.length && test != original ){
+      let test1 =test.toLowerCase().replace(/[^a-z0-9]/gi, '').replace(/\s/g, '').split("").sort().join(""); 
+//       let testUnique = [... new Set(test1)];
+      let original1 = original.toLowerCase().replace(/[^a-z0-9]/gi, '').replace(/\s/g, '').split("").sort().join(""); 
+//       let originalUnique = [... new Set(original1)];
+    let isInclude = false;
+    
     for(let i=0; i<test1.length; i++){
-      if(!original1.includes(test1[i])) return false;
+    if(test1[i] != original1[i]) {
+      return false;
+      } else {
+        isInclude = true;
+      }
     }
 
-    return true;
+   return isInclude;
   } else { 
     return false
   }; 
-
 }
 
-console.log(isAnagram("Twoo", "WooT"));
-console.log(isAnagram("dumble", "bumble"));
-console.log(isAnagram("Buckethead", "DeathCubeK"));
-console.log(isAnagram("ound", "round"));
-console.log(isAnagram("apple", "pale"));
-console.log(isAnagram("!@#", "@#!"));
-console.log(isAnagram("123", "231"));
-console.log(isAnagram("but", "But"));
+console.log(isAnagram("Twoo", "WooT"));   // true
+console.log(isAnagram("dumble", "bumble"));   //false
+console.log(isAnagram("Buckethead", "DeathCubeK")); //true
+console.log(isAnagram("ound", "round"));    //false
+console.log(isAnagram("apple", "pale"));    //false
+console.log(isAnagram("!@#", "@#!"));   //false ? not characters/numbers
+console.log(isAnagram("123", "231"));   // true
+console.log(isAnagram("but", "But"));   //true
+console.log(isAnagram("230", 302));     //false
+console.log(isAnagram("ab!", "ab"));   //false
+console.log(isAnagram("12$3", "231"));   // false
+console.log(isAnagram("bu t", "tu b"));   //true
+console.log(isAnagram("bu t", "tub"));   //false
+console.log(isAnagram("23a", "a32"));     //true

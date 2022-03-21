@@ -574,7 +574,7 @@ console.log(roll.at(1));   //23
 console.log(roll.slice(1, 2));  //[23]
 
 
-// write the function isAnagram
+// write the function isAnagram [codewars.com]
 var isAnagram = function (test, original) {
   if (test.length === original.length && test != original) {
     let test1 = test
@@ -623,3 +623,45 @@ console.log(isAnagram('12$3', '231')); // false
 console.log(isAnagram('bu t', 'tu b')); //true
 console.log(isAnagram('bu t', 'tub')); //false
 console.log(isAnagram('23a', 'a32')); //true
+
+//DNA PAIRING [codewars.com]
+// ****************************************
+
+// Deoxyribonucleic acid (DNA) is a chemical found in the nucleus of cells and carries the "instructions" for the development and functioning of living organisms.
+
+// If you want to know more: http://en.wikipedia.org/wiki/DNA
+
+// In DNA strings, symbols "A" and "T" are complements of each other, as "C" and "G". You function receives one side of the DNA (string, except for Haskell); you need to return the other complementary side. DNA strand is never empty or there is no DNA at all (again, except for Haskell).
+
+// More similar exercise are found here: http://rosalind.info/problems/list-view/ (source)
+
+function DNAStrand(dna){ 
+//your code here
+ let newDna = dna.split("");
+
+let dnaArray = newDna.map(item=>{
+ 
+   switch(item){
+     case "A": item = "T";
+     break;
+     case "T": item = "A";
+     break;
+     case "C": item = "G";
+     break;
+     case "G": item = "C";
+     break;
+     default: item = "";
+     break;
+   }
+   
+   return item;
+ 
+ })
+
+
+return dnaArray.join("");
+}
+
+console.log(DNAStrand("AAAA"));   //TTTT
+console.log(DNAStrand("ATTGC"));  //TAACG
+console.log(DNAStrand("GTAT"));   //CATA

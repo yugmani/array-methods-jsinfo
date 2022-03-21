@@ -626,7 +626,43 @@ const caMelize = (str) => {
 
 console.log(caMelize('-webkit-transition'));
 
+// Filter range
+// -------------------------------------------
+
+// Write a function filterRange(arr, a, b) that gets an array arr, looks for elements with values higher or equal to a and lower or equal to b and return a result as an array.
+
+// The function should not modify the array. It should return the new array.
+
+const filterRange = (arr, a, b) => {
+  return arr.filter((item) => item >= a && item <= b);
+};
+
+let array11 = [5, 3, 8, 1];
+console.log(filterRange(array11, 1, 4)); // [3, 1];
+console.log(array11); // [5, 3, 8, 1]
+
+let array22 = [15, 31, 81, 21, 45];
+console.log(filterRange(array22, 21, 50)); // [31, 21, 45]
+console.log(array22); //[15, 31, 81, 21, 45]
+
+// Filter range "in place"
+// -------------------------------------------
+
+// Write a function filterRangeInPlace(arr, a, b) that gets an array arr and removes from it all values except those that are between a and b. The test is: a ≤ arr[i] ≤ b.
+
+// The function should only modify the array. It should not return anything.
+const filterRangeInPlace = (arr, a, b)=>{
+arr.forEach((item, index)=> item >= a && item <= b ? item : arr.splice(index, 1));
+}
+
+let array33 = [5, 3, 8, 1];
+console.log(filterRangeInPlace(array33, 1, 4));
+console.log(array33); //[3, 1]
+
+
 // write the function isAnagram [codewars.com]
+// -------------------------------------------
+
 var isAnagram = function (test, original) {
   if (test.length === original.length && test != original) {
     let test1 = test

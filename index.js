@@ -552,27 +552,79 @@ console.log(soldiers[1].age); // 23
 
 // The at() method takes an integer value and returns the item at that index, allowing for positive and negative integers.
 // Negative integers count back from the last item in the array.
-// Returns the element in the array matching the given index. 
+// Returns the element in the array matching the given index.
 // Returns undefined if the given index can not be found.
 
-const roll = [11, 23, 45,67, 78, 100, 33, 7]
-let item3 = roll.at(2); 
-console.log(item3);   //45;
+const roll = [11, 23, 45, 67, 78, 100, 33, 7];
+let item3 = roll.at(2);
+console.log(item3); //45;
 
 let itemLast = roll.at(-1);
-console.log(itemLast);  //7
+console.log(itemLast); //7
 
-console.log(roll.at(-3));   //100
-console.log(roll.at(11));   //undefined ->?Why
+console.log(roll.at(-3)); //100
+console.log(roll.at(11)); //undefined ->?Why
 
 // arr.slice() vs arr.at()
 // -------------------------------------
 
 // slice() method returns an array.
 // at() method returns an element.
-console.log(roll.at(1));   //23
-console.log(roll.slice(1, 2));  //[23]
+console.log(roll.at(1)); //23
+console.log(roll.slice(1, 2)); //[23]
 
+// TASKS
+// **************************************
+
+// Translate border-left-width to borderLeftWidth
+// -------------------------------------
+
+// Write the function camelize(str) that changes dash-separated words like “my-short-string” into camel-cased “myShortString”.
+
+// That is: removes all dashes, each word after dash becomes uppercased.
+const camelize = (str) => {
+  let newStr = str.split('-');
+  const result = newStr.map((item) => {
+    if (newStr.indexOf(item, 0) !== 0) {
+      item = item[0].toUpperCase() + item.slice(1);
+    }
+
+    return item;
+  });
+
+  return result.join('');
+};
+
+console.log(camelize('background-color')); //'backgroundColor';
+console.log(camelize('list-style-image')); //'listStyleImage';
+console.log(camelize('-webkit-transition')); //'WebkitTransition';
+
+// More efficient code
+const cameLize = (str) => {
+  return str
+    .split('-')
+    .map((item) => {
+      if (str.indexOf(item, 0) !== 0) {
+        item = item[0].toUpperCase() + item.slice(1);
+      }
+      return item;
+    })
+    .join('');
+};
+
+console.log(cameLize('background-color')); //'backgroundColor';
+
+// Suggested solution
+const caMelize = (str) => {
+  return str
+    .split('-')
+    .map((item, index) =>
+      index > 0 ? item[0].toUpperCase() + item.slice(1) : item
+    )
+    .join('');
+};
+
+console.log(caMelize('-webkit-transition'));
 
 // write the function isAnagram [codewars.com]
 var isAnagram = function (test, original) {
@@ -635,33 +687,35 @@ console.log(isAnagram('23a', 'a32')); //true
 
 // More similar exercise are found here: http://rosalind.info/problems/list-view/ (source)
 
-function DNAStrand(dna){ 
-//your code here
- let newDna = dna.split("");
+function DNAStrand(dna) {
+  //your code here
+  let newDna = dna.split('');
 
-let dnaArray = newDna.map(item=>{
- 
-   switch(item){
-     case "A": item = "T";
-     break;
-     case "T": item = "A";
-     break;
-     case "C": item = "G";
-     break;
-     case "G": item = "C";
-     break;
-     default: item = "";
-     break;
-   }
-   
-   return item;
- 
- })
+  let dnaArray = newDna.map((item) => {
+    switch (item) {
+      case 'A':
+        item = 'T';
+        break;
+      case 'T':
+        item = 'A';
+        break;
+      case 'C':
+        item = 'G';
+        break;
+      case 'G':
+        item = 'C';
+        break;
+      default:
+        item = '';
+        break;
+    }
 
+    return item;
+  });
 
-return dnaArray.join("");
+  return dnaArray.join('');
 }
 
-console.log(DNAStrand("AAAA"));   //TTTT
-console.log(DNAStrand("ATTGC"));  //TAACG
-console.log(DNAStrand("GTAT"));   //CATA
+console.log(DNAStrand('AAAA')); //TTTT
+console.log(DNAStrand('ATTGC')); //TAACG
+console.log(DNAStrand('GTAT')); //CATA

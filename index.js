@@ -86,11 +86,6 @@ const negativeRemove = missing.splice(-2, 2); //remove 2 elements from last
 console.log(negativeRemove); // ["five", "six"]
 console.log(missing); //["one", "two", "three", "four"]
 
-// Remove rest of the elements starting index 1;
-const negativeDelete = missing.splice(1);
-console.log(negativeDelete); //["two", "three", "four"]
-console.log(missing); //["one"]
-
 // ARRAY.SLICE() METHOD
 // ******************************************
 
@@ -689,6 +684,69 @@ const copyAndSort = (arr) => {
 };
 
 console.log(copyAndSort(arrWeb));
+
+// Create an extendable calculator
+// -------------------------------------------
+
+// Create a constructor function Calculator that creates “extendable” calculator objects.
+// The task consists of two parts.
+
+// 1. First, implement the method calculate(str) that takes a string like "1 + 2" in the format “NUMBER operator NUMBER” (space-delimited) and returns the result. Should understand plus + and minus -.
+
+// 2. Then add the method addMethod(name, func) that teaches the calculator a new operation. It takes the operator name and the two-argument function func(a,b) that implements it.
+
+// For instance, let’s add the multiplication *, division / and power **:
+
+// constructor function
+// function Calculator() {
+//  
+//   this.calculate = function (str) {
+//     return eval(str);
+//   };
+
+//   this.addMethod = function (name, func) {
+//     return func(name);
+//   };
+// }
+
+// let calc = new Calculator();
+// console.log('Calc: ', calc.calculate('3+7')); //10
+
+
+
+function Calculator(){
+  this.methods = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b
+  };
+
+this.calculate = function(str){
+  let strArray = str.split(" ");
+  let a = Number(strArray[0]);
+  let operator = strArray[1];
+  let b = Number(strArray[2]);
+
+  if(!this.methods[operator] || isNaN(a) || isNaN(b) ) return NaN;
+
+  return this.methods[operator](a, b);  
+}
+
+this.addMethod = function(name, func){
+  this.methods[name] = func;
+}
+
+}
+
+let powerCalc = new Calculator();
+powerCalc.addMethod('*', (a, b) => a * b);
+powerCalc.addMethod('/', (a, b) => a / b);
+powerCalc.addMethod('**', (a, b) => a ** b);
+
+console.log("Power Calculator: ", powerCalc.calculate('2 ** 3')); //8
+console.log("Power Calculator: ", powerCalc.calculate('2 + 3')); //5
+console.log("Power Calculator: ", powerCalc.calculate('2 * 3')); //6
+console.log("Power Calculator: ", powerCalc.calculate('10 / 5')); //2
+
 
 // write the function isAnagram [codewars.com]
 // -------------------------------------------

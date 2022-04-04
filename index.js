@@ -185,6 +185,8 @@ console.log(index); //-1;
 index = searchArray.indexOf(true, 0);
 console.log(index); //3;
 
+console.log('index of false: ', searchArray.indexOf(false));
+
 // arr.lastIndexOf(item, from) – same, but looks for from right to left.
 let lastIndex = searchArray.lastIndexOf(11, searchArray.length);
 console.log(lastIndex); //5
@@ -699,7 +701,7 @@ console.log(copyAndSort(arrWeb));
 
 // constructor function
 // function Calculator() {
-//  
+//
 //   this.calculate = function (str) {
 //     return eval(str);
 //   };
@@ -712,29 +714,26 @@ console.log(copyAndSort(arrWeb));
 // let calc = new Calculator();
 // console.log('Calc: ', calc.calculate('3+7')); //10
 
-
-
-function Calculator(){
+function Calculator() {
   this.methods = {
-    "-": (a, b) => a - b,
-    "+": (a, b) => a + b
+    '-': (a, b) => a - b,
+    '+': (a, b) => a + b,
   };
 
-this.calculate = function(str){
-  let strArray = str.split(" ");
-  let a = Number(strArray[0]);
-  let operator = strArray[1];
-  let b = Number(strArray[2]);
+  this.calculate = function (str) {
+    let strArray = str.split(' ');
+    let a = Number(strArray[0]);
+    let operator = strArray[1];
+    let b = Number(strArray[2]);
 
-  if(!this.methods[operator] || isNaN(a) || isNaN(b) ) return NaN;
+    if (!this.methods[operator] || isNaN(a) || isNaN(b)) return NaN;
 
-  return this.methods[operator](a, b);  
-}
+    return this.methods[operator](a, b);
+  };
 
-this.addMethod = function(name, func){
-  this.methods[name] = func;
-}
-
+  this.addMethod = function (name, func) {
+    this.methods[name] = func;
+  };
 }
 
 let powerCalc = new Calculator();
@@ -742,11 +741,10 @@ powerCalc.addMethod('*', (a, b) => a * b);
 powerCalc.addMethod('/', (a, b) => a / b);
 powerCalc.addMethod('**', (a, b) => a ** b);
 
-console.log("Power Calculator: ", powerCalc.calculate('2 ** 3')); //8
-console.log("Power Calculator: ", powerCalc.calculate('2 + 3')); //5
-console.log("Power Calculator: ", powerCalc.calculate('2 * 3')); //6
-console.log("Power Calculator: ", powerCalc.calculate('10 / 5')); //2
-
+console.log('Power Calculator: ', powerCalc.calculate('2 ** 3')); //8
+console.log('Power Calculator: ', powerCalc.calculate('2 + 3')); //5
+console.log('Power Calculator: ', powerCalc.calculate('2 * 3')); //6
+console.log('Power Calculator: ', powerCalc.calculate('10 / 5')); //2
 
 // write the function isAnagram [codewars.com]
 // -------------------------------------------
